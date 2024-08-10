@@ -8,5 +8,8 @@
     "pgstore",
     "sqlc",
     "terndotenv"
-  ]
+  ],
+  "[go]": {
+    "editor.bracketPairColorization.enabled": false
+  },
 }
