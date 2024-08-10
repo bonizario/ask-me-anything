@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - ${AMA_DATABASE_PORT:-5432}:5432
+    environment:
+      POSTGRES_USER: ${AMA_DATABASE_USER}
+      POSTGRES_PASSWORD: ${AMA_DATABASE_PASSWORD}
+      POSTGRES_DB: ${AMA_DATABASE_NAME}
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    depends_on:
+      - db
+    ports:
+      - ${AMA_PGADMIN_PORT:-5050}:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${AMA_PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${AMA_PGADMIN_PASSWORD}
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+volumes:
+  db:
+    driver: local
+  pgadmin:
+    driver: local
