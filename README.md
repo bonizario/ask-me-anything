@@ -8,6 +8,8 @@ This repo is the RESTful API written in Go.
 
 > [!IMPORTANT]
 > To setup and run the project, ensure you have both `Go` and `Docker` installed.
+>
+> Remember to change the provided example variables to actual values ​​in the `.env` file.
 
 ### Clone the repository
 
@@ -19,7 +21,6 @@ cd ask-me-anything-server
 ### Set environment variables
 
 ```sh
-# make the necessary changes on the .env file
 cp .env.example .env
 ```
 
