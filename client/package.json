@@ -7,9 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.51.23",
     "clsx": "^2.1.1",
     "lucide-react": "^0.427.0",
     "react": "19.0.0-rc-2d2cc042-20240809",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@tanstack/eslint-plugin-query": "^5.51.15",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react": "^4.3.1",

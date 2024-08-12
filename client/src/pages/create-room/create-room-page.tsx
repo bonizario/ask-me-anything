@@ -1,17 +1,27 @@
+import amaLogo from '@/assets/ama-logo.svg';
 import { Button } from '@/components/button';
+import { createRoom } from '@/http';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import amaLogo from '../assets/ama-logo.svg';
+import { toast } from 'sonner';
 
 export function CreateRoomPage() {
   const navigate = useNavigate();
 
-  const handleCreateRoom = (data: FormData) => {
+  const handleCreateRoom = async (data: FormData) => {
     const theme = data.get('theme')?.toString();
 
-    console.log({ theme });
+    if (!theme) {
+      return;
+    }
 
-    navigate('/room/123');
+    try {
+      const { roomId } = await createRoom({ theme });
+
+      navigate(`/room/${roomId}`);
+    } catch {
+      toast.error(' Could not create room');
+    }
   };
 
   return (
@@ -29,11 +39,12 @@ export function CreateRoomPage() {
           className="flex items-center gap-2 rounded-xl border border-zinc-800 bg-zinc-900 p-2 ring-orange-400 ring-offset-2 ring-offset-zinc-900 focus-within:ring-1"
         >
           <input
-            type="text"
-            name="theme"
-            placeholder="Room theme"
             autoComplete="off"
             className="mx-2 flex-1 bg-transparent text-sm text-zinc-100 outline-none placeholder:text-zinc-500"
+            name="theme"
+            placeholder="Room theme"
+            required
+            type="text"
           />
           <Button type="submit">
             Create room
