@@ -27,11 +27,11 @@ export function RoomPage() {
         <img src={amaLogo} alt="Ask Me Anything Logo" className="h-5 shrink-0" />
 
         <span className="flex-1 truncate text-sm text-zinc-500">
-          Código da sala: <span className="lowercase text-zinc-300">{roomId}</span>
+          Room ID: <span className="lowercase text-zinc-300">{roomId}</span>
         </span>
 
         <Button intent="secondary" type="button" onClick={handleShareRoom}>
-          Compartilhar <Share2 className="size-4" />
+          Share <Share2 className="size-4" />
         </Button>
       </div>
 
