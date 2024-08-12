@@ -1,5 +1,14 @@
-type GetRoomMessagesRequest = {
+export type GetRoomMessagesRequest = {
   roomId: string;
+};
+
+export type GetRoomMessagesResponse = {
+  messages: {
+    id: string;
+    text: string;
+    reactionCount: number;
+    answered: boolean;
+  }[];
 };
 
 type RawResponse = {
@@ -10,7 +19,9 @@ type RawResponse = {
   answered: boolean;
 }[];
 
-export async function getRoomMessages({ roomId }: GetRoomMessagesRequest) {
+export async function getRoomMessages({
+  roomId,
+}: GetRoomMessagesRequest): Promise<GetRoomMessagesResponse> {
   const response = await fetch(`${import.meta.env['VITE_API_URL']}/rooms/${roomId}/messages`);
 
   const data: RawResponse = await response.json();

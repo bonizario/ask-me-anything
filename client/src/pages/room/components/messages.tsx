@@ -1,4 +1,4 @@
-import { useRoomId } from '@/hooks';
+import { useMessagesWebSocket, useRoomId } from '@/hooks';
 import { getRoomMessages } from '@/http';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Message } from './message';
@@ -11,9 +11,13 @@ export function Messages() {
     queryFn: () => getRoomMessages({ roomId }),
   });
 
+  useMessagesWebSocket();
+
+  const sortedMessages = data.messages.sort((a, b) => b.reactionCount - a.reactionCount);
+
   return (
     <ol className="flex list-outside list-decimal flex-col gap-8 px-3">
-      {data.messages.map((message) => (
+      {sortedMessages.map((message) => (
         <Message
           key={message.id}
           id={message.id}
