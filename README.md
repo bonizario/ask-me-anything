@@ -4,6 +4,10 @@ Ask Me Anything is a real-time platform where users can create rooms on specific
 
 This repository contains the server and client applications, built using Go and React, respectively.
 
+|               Home Page               |                 Room Page                 |
+| :-----------------------------------: | :---------------------------------------: |
+| ![Home Page](.github/create-room.png) | ![Room Page](.github/create-question.png) |
+
 ## Installation
 
 > [!IMPORTANT]
